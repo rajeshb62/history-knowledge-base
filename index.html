@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History Knowledge Base</title>
+  <style>
+    :root {
+      --bg: #faf8f8;
+      --surface: #ffffff;
+      --border: #e5e5e5;
+      --text: #2b2b2b;
+      --text-dim: #4e4e4e;
+      --accent: #284b63;
+      --accent2: #84a59d;
+      --radius: 8px;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+    header { text-align: center; margin-bottom: 3rem; }
+    h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--text-dim); font-size: 1rem; max-width: 500px; margin: 0 auto; }
+    .section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin: 2rem 0 0.75rem; }
+    .wiki-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+    .wiki-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1rem 1.25rem; text-decoration: none; color: inherit;
+      transition: border-color 0.2s, background 0.2s; position: relative;
+    }
+    .wiki-card:hover { border-color: var(--accent); background: #f5f5f5; }
+    .wiki-card .name { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .wiki-card .desc { font-size: 0.85rem; color: var(--text-dim); line-height: 1.4; }
+    .wiki-card .arrow { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--border); font-size: 1.2rem; transition: color 0.2s, right 0.2s; }
+    .wiki-card:hover .arrow { color: var(--accent); right: 0.85rem; }
+    footer { text-align: center; margin-top: 4rem; font-size: 0.8rem; color: var(--text-dim); opacity: 0.6; }
+    footer a { color: var(--accent); text-decoration: none; }
+    .search-box {
+      width: 100%; max-width: 400px; margin: 0 auto 1.5rem; display: block;
+      padding: 0.65rem 1rem; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--text); font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .search-box:focus { border-color: var(--accent); }
+    .search-box::placeholder { color: #999; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header><h1>📚 History Knowledge Base</h1><p class="subtitle">Narrative research wikis covering world history from the 15th to 19th centuries.</p></header>
+    <input type="text" class="search-box" id="search" placeholder="Filter wikis..." oninput="filterWikis()">
+    <div class="section-title">Early Modern</div>
+    <div class="wiki-grid" id="wiki-list">
+      <a href="https://rajeshb62.github.io/vijayanagara-wiki/" class="wiki-card"><div class="name">Vijayanagara Empire</div><div class="desc">15th-century South India — administration, trade, society, and culture.</div><div class="arrow">→</div></a>
+      <a href="https://rajeshb62.github.io/ottoman-wiki/" class="wiki-card"><div class="name">Ottoman Empire</div><div class="desc">Mehmed the Conqueror, Byzantine legacy, and the classical age.</div><div class="arrow">→</div></a>
+      <a href="https://rajeshb62.github.io/venice-wiki/" class="wiki-card"><div class="name">Venice</div><div class="desc">Maritime empire, commercial networks, and cultural flowering.</div><div class="arrow">→</div></a>
+      <a href="https://rajeshb62.github.io/leanardo-davinci-renaissance-wiki/" class="wiki-card"><div class="name">Leonardo &amp; the Renaissance</div><div class="desc">The Italian Renaissance through Leonardo and Burckhardt.</div><div class="arrow">→</div></a>
+      <a href="https://rajeshb62.github.io/colombus-maritime-adventurers-wiki/" class="wiki-card"><div class="name">Columbus &amp; Maritime Adventurers</div><div class="desc">European maritime expansion in the 16th and 17th centuries.</div><div class="arrow">→</div></a>
+      <a href="https://rajeshb62.github.io/printing-press-wiki/" class="wiki-card"><div class="name">Printing Press</div><div class="desc">Gutenberg, Aldus, and how print transformed Europe.</div><div class="arrow">→</div></a>
+    </div>
+    <div class="section-title">Reformation &amp; Early Modern Europe</div>
+    <div class="wiki-grid">
+      <a href="https://rajeshb62.github.io/dutch-republic-wiki/" class="wiki-card"><div class="name">Dutch Republic</div><div class="desc">The Revolt, the Golden Age, and global trade.</div><div class="arrow">→</div></a>
+      <a href="https://rajeshb62.github.io/england-16-wiki/" class="wiki-card"><div class="name">England — 16th Century</div><div class="desc">Tudor England: Reformation, Elizabeth, the Armada, Shakespeare.</div><div class="arrow">→</div></a>
+      <a href="https://rajeshb62.github.io/england-17-wiki/" class="wiki-card"><div class="name">England — 17th Century</div><div class="desc">Civil war, Restoration, Glorious Revolution, the Enlightenment.</div><div class="arrow">→</div></a>
+    </div>
+    <div class="section-title">Enlightenment &amp; Modern</div>
+    <div class="wiki-grid">
+      <a href="https://rajeshb62.github.io/great-britain-18-wiki/" class="wiki-card"><div class="name">Great Britain — 18th Century</div><div class="desc">Union, empire, steam, and Burke.</div><div class="arrow">→</div></a>
+      <a href="https://rajeshb62.github.io/great-britain-19-wiki/" class="wiki-card"><div class="name">Great Britain — 19th Century</div><div class="desc">Babbage, credit systems, and public finance.</div><div class="arrow">→</div></a>
+    </div>
+    <footer>11 wikis · Built with <a href="https://quartz.jzhao.xyz">Quartz</a> · Powered by <a href="https://hermes-agent.nousresearch.com">Hermes Agent</a></footer>
+  </div>
+  <script>
+    function filterWikis() {
+      const q = document.getElementById("search").value.toLowerCase();
+      document.querySelectorAll(".wiki-card").forEach(c => {
+        c.style.display = (!q || c.textContent.toLowerCase().includes(q)) ? "" : "none";
+      });
+    }
+  </script>
+</body>
+</html>
